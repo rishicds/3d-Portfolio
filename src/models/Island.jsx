@@ -81,7 +81,7 @@ export function Island({
   }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]);
 
   useFrame(() => {
-    islandRef.current.rotation.y += 0.001 * Math.PI; // Constant rotation
+    islandRef.current.rotation.y -= 0.001 * Math.PI; // Constant rotation
 
     if (!isRotating) {
       rotationSpeed.current *= dampingFactor;
@@ -92,7 +92,7 @@ export function Island({
     } else {
       const rotation = islandRef.current.rotation.y;
       const normalizedRotation =
-        ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+        ((rotation % (-2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
 
       switch (true) {
         case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
